@@ -1,0 +1,52 @@
+# yazi.toml
+
+[manager]
+# show_hidden = true
+ratio = [2, 3, 5]
+linemode = "mtime"
+show_symlink = false
+
+[preview]
+image_quality = 80
+
+[opener]
+video = [
+	{ run = 'mpv "$@"', orphan = true },
+	{ run = 'vlc "$@"', orphan = true },
+]
+edit = [
+	{ run = '$EDITOR "$@"', block = true },
+	{ run = 'code "$@"',    orphan = true, desc = "VSCode" },
+]
+open = [
+	{ run = 'xdg-open "$1"', desc = "Open" },
+]
+image = [
+	{ run = 'gthumb "$@"', orphan = true, desc = "gThumb" },
+]
+extract = [
+	{ run = 'ya pub extract --list "$@"', desc = "Extract here" },
+]
+epub = [
+	{ run = 'okular "$@"', orphan = true, desc = "Open Epub" }
+]
+gimp = [
+	{ run = 'gimp "$@"', orphan = true, desc = "GIMP" }
+]
+
+[open]
+rules = [
+
+	{ name = "*/", use = "open" },
+	{ mime = "text/*", use = "edit" },
+	{ mime = "video/*", use = "video" },
+	{ name = "*.xcf", use = "gimp" },
+	{ mime = "image/*", use = "image" },
+	{ name = "*.epub", use = "epub" },
+	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = "extract" },
+	{ name = "*.{json,jsonc}", use = "edit" },
+	{ mime = "inode/empty", use = "edit" },
+
+	# fallback
+	{ name = "*", use = [ "open", "edit" ] },
+]
