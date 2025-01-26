@@ -1,0 +1,176 @@
+{
+    "layer": "top",
+    "position": "top",
+    "reload_style_on_change": true,
+    "modules-left": [
+        "group/group-power",
+        "hyprland/workspaces",
+        "hyprland/language"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "network",
+        "wireplumber",
+        "battery",
+        "custom/notification",
+        "group/group-hardware"        
+    ],
+
+    // Left Modules
+    "group/group-power": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 300,
+            "children-class": "not-power",
+            "transition-left-to-right": true,
+            "click-to-reveal": true
+        },
+        "modules": [
+            "image#imgPower",
+            "custom/power",
+            "custom/reboot",
+            "custom/lock"
+        ]
+    },
+    "image#imgPower": {
+        "path": "/home/shuvi/.config/waybar/img02.png",
+        "size": 40
+    },
+    "custom/power": {
+        "format": "󰐥",
+        "on-click": "shutdown now"
+    },
+    "custom/reboot": {
+        "format": "󰜉",
+        "on-click": "reboot"
+    },
+    "custom/lock": {
+        "format": "󰍁",
+        "on-click": "hyprlock"
+    },
+    "hyprland/workspaces": {
+        
+    },
+    "hyprland/language": {
+        "format": "{}",
+        "format-en": "English",
+        "format-ar": "Arabic",
+        "keyboard-name": "at-translated-set-2-keyboard"
+    },
+
+    // Center Modules
+    "clock": {
+        "interval": 1,
+        "format": "{:%A, %b %d | %r}",
+        "tooltip-format": "{calendar}",
+        "calendar": {
+            "mode": "month",
+            "weeks-pos": "right",
+            "format": {
+                "months": "<span color='#AA83F0'><b>{}</b></span>",
+                "days": "<span color='#EFF0F1'><b>{}</b></span>",
+                "weeks": "<span color='#AA83F0'><b>W{}</b></span>",
+                "weekdays": "<span color='#AA83F0'><b>{}</b></span>",
+                "today": "<span color='#8E04F0'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+    
+    // Right Modules
+    "wireplumber": {
+        "on-click": "amixer sset Master toggle 1>/dev/null",
+        "on-click-right": "pavucontrol",
+        "format": "{icon}{volume}%",
+        "format-muted": " Muted",
+        "format-icons": {
+            "default": [
+                " ",
+                " "
+            ]
+        }
+    },
+
+    "battery": {
+        "bat": "BAT0",
+        "adapter": "ADP1",
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-icons": [
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂",
+            "󰁹"
+        ]
+    },
+
+    "group/group-hardware": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 300,
+            "children-class": "not-power",
+            "transition-left-to-right": false,
+            "click-to-reveal": true
+        },
+        "modules": [
+            "image#imgHardware",
+            "cpu",
+            "memory"
+        ]
+    },
+    "image#imgHardware": {
+        "path": "/home/shuvi/.config/waybar/img01.png",
+        "interval": 0,
+        "size": 40
+    },
+
+    "cpu": {
+        "interval": 1,
+        "format": " {}%"
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": "{used:0.1f}GB/{total:0.1f}GB"
+    },
+
+    "network": {
+        "format": "{ifname}",
+        "format-wifi": "󰖩 {signalStrength}%",
+        "format-ethernet": "󰈀 Connected",
+        "format-disconnected": "Disconnected",
+        "tooltip-format": "󰈀 {ifname} via {gwaddr}",
+        "tooltip-format-wifi": "{essid}",
+        "tooltip-format-ethernet": "{ifname}",
+        "tooltip-format-disconnected": "No internet, Cry about it (:"
+    },
+
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+          "notification": "󱅫",
+          "none": "󰂚",
+          "dnd-notification": "󰂛<span foreground='red'><sup></sup></span>",
+          "dnd-none": "󰂛",
+          "inhibited-notification": "󰂚<span foreground='red'><sup></sup></span>",
+          "inhibited-none": "󰂚",
+          "dnd-inhibited-notification": "󰂛<span foreground='red'><sup></sup></span>",
+          "dnd-inhibited-none": "󰂛"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+      }
+
+}
