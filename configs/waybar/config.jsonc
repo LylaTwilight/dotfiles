@@ -35,7 +35,7 @@
         ]
     },
     "image#imgPower": {
-        "path": "/home/shuvi/.config/waybar/img02.png",
+        "exec":"~/.config/waybar/image02.sh",
         "size": 40
     },
     "custom/power": {
@@ -126,7 +126,7 @@
         ]
     },
     "image#imgHardware": {
-        "path": "/home/shuvi/.config/waybar/img01.png",
+        "exec":"~/.config/waybar/image01.sh",
         "interval": 0,
         "size": 40
     },
