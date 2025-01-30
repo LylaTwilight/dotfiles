@@ -1,0 +1,77 @@
+/* General Configuration */
+configuration {
+	font: "JetBrainsMono Nerd Font 14";
+	show-icons: true;
+	drun-display-format: " {name}";
+	display-drun: "";
+}
+
+* {	
+    bg: #181818;
+    fg: #cba6f7;
+
+    text-color: @fg;
+}
+
+window {
+    width: 768px;
+    border: 2px;
+    border-color: transparent;
+    background-color: @bg;
+    border-radius: 20px;
+}
+
+mainbox {
+    border-color: @fg;
+    border-radius: 20px;
+    border: 2px;
+    background-color: @bg;
+    children: [inputbar, listview];
+    spacing: 12;
+    padding: 20px;
+}
+
+inputbar {
+    children: [prompt, entry];
+    background-color: @bg;
+}
+
+prompt {
+    vertical-align: 0.5;
+    padding: 00 0 0 55;
+    background-image: url("img04.png", height);
+    background-color: @bg;
+}
+
+entry {
+    font: "JetBrainsMono Nerd Font 18";
+    padding: 12 0 12 8;
+    background-color: @bg;
+}
+
+listview {
+    background-color: @bg;
+    fixed-height: false;
+    lines: 8;
+}
+
+element {
+    background-color: @bg;
+    padding: 5px;
+}
+
+element selected {
+    background-color: @fg;
+    border-radius: 20px;
+    text-color: @bg;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+}
+
+element-icon {
+    size: 32px;
+    background-color: transparent;
+}

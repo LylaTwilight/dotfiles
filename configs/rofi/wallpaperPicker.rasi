@@ -1,0 +1,35 @@
+* {
+    background-color: transparent;
+}
+window {
+    fullscreen:       true;
+    background-color: rgb(0, 0, 0, 0.8);
+    padding:          4em;
+    children:         [mainbox];
+}
+
+mainbox {
+  orientation: horizontal;
+  children: [listview];
+}
+
+listview {
+    flow: horizontal;
+    fixed-columns: true;
+    columns: 5;
+    spacing: 1.0em;
+}
+
+element {
+    orientation: vertical;
+    border-radius: 0.4em;
+  children: [element-icon];
+}
+element-icon {
+    size: 13em;
+}
+
+
+element selected {
+    background-color: rgba(132, 0, 219, 0.3);
+}

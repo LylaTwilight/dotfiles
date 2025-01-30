@@ -37,7 +37,7 @@ done <<< "$filenames"
 entries="${entries%\\n}"
 
 # runs rofi
- rofi=$(echo -e "$entries" | rofi -dmenu -theme $HOME/.config/rofi/wallpaper-selector.rasi)
+ rofi=$(echo -e "$entries" | rofi -dmenu -theme wallpaperPicker.rasi)
 
 # check if you selected a wallpaper and apply it using swww
 if [[ -n "$rofi" ]]; then
