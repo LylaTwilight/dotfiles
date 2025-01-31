@@ -1,4 +1,4 @@
 #!/bin/bash
 
-image01="$HOME/.config/waybar/img01.png"
+image01="$HOME/.config/waybar/images/img01.png"
 echo "$image01"

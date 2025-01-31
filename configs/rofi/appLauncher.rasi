@@ -39,7 +39,7 @@ inputbar {
 prompt {
     vertical-align: 0.5;
     padding: 00 0 0 55;
-    background-image: url("img04.png", height);
+    background-image: url("images/img04.png", height);
     background-color: @bg;
 }
 
