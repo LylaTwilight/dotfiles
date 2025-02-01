@@ -11,6 +11,7 @@
         "clock"
     ],
     "modules-right": [
+        "tray",
         "network",
         "wireplumber",
         "battery",
@@ -150,6 +151,10 @@
         "tooltip-format-wifi": "{essid}",
         "tooltip-format-ethernet": "{ifname}",
         "tooltip-format-disconnected": "No internet, Cry about it (:"
+    },
+    "tray": {
+        "icon-size": 13,
+        "spacing": 10
     },
 
     "custom/notification": {

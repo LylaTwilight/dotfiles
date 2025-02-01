@@ -114,6 +114,14 @@ window#waybar {
     padding: 0 10px;
 }
 
+#tray{
+    color: #E4B1F0;
+    background: transparent;
+    border-radius: 50px;
+    margin: 5px;
+    padding: 2px 15px;
+}
+
 
 
 
