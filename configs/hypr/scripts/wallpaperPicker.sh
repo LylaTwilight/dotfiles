@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Check if rofi is already running
+if pgrep -x "rofi" > /dev/null; then
+    hyprctl notify 3 2000 "rgb(C62E2E)" "fontsize:24" " Rofi is already running"
+    exit 1
+fi
+
 # The path of the wallpapers directory
 wallpaper_dir="$HOME/.wallpapers"
 
@@ -37,18 +43,17 @@ done <<< "$filenames"
 entries="${entries%\\n}"
 
 # runs rofi
- rofi=$(echo -e "$entries" | rofi -dmenu -theme wallpaperPicker.rasi)
+picked=$(echo -e "$entries" | rofi -dmenu -theme wallpaperPicker.rasi)
 
 # check if you selected a wallpaper and apply it using swww
-if [[ -n "$rofi" ]]; then
+if [[ -n "$picked" ]]; then
 
-	wal -i "$wallpaper_dir/$rofi" -n 
+	wal -i "$wallpaper_dir/$picked" -n 
 
-	swww img "$wallpaper_dir/$rofi" --transition-fps 200 --transition-type random --transition-duration 2 
+	swww img "$wallpaper_dir/$picked" --transition-fps 200 --transition-type random --transition-duration 2 
 
-	hyprctl notify 5 2000 "rgb(84DE8E)" "fontsize:24 ✨ Wallpaper changed to $rofi"
-	
+	hyprctl notify 5 2000 "rgb(84DE8E)" "fontsize:24 ✨ Wallpaper changed to $picked"
+
 else
-	hyprctl notify -1 1000 "rgb(729FCF)" "fontsize:24 💀 KILL YOURSELF"
-
+	hyprctl notify -1 1500 "rgb(729FCF)" "fontsize:24" "😔 No wallpapers?"
 fi
