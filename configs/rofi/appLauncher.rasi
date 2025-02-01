@@ -1,5 +1,6 @@
 /* General Configuration */
 configuration {
+	terminal: "kitty";
 	font: "JetBrainsMono Nerd Font 14";
 	show-icons: true;
 	drun-display-format: " {name}";
