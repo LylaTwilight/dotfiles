@@ -3,8 +3,14 @@
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
 
   "logo" : {
-    "source": "$(ls ~/.config/fastfetch/images/*.png | shuf -n 1)",
-    "height": 18
+    /* for shuffling, use this
+    "source": "$(ls ~/.config/fastfetch/images/*.png | shuf -n 1)", */
+    "source": "~/.config/fastfetch/images/arch.png",
+    "height": 16,
+    "padding": {
+      "left": 4,
+      "top": 1
+    }
   },
 
   "display": {
@@ -13,77 +19,78 @@
     "separator": " "
   },
 
+  // Custom Color
+  // syntax "38;2;r;g;b" r = red, g = green, b = blue, idk about 38;2
   "modules": [
-
     "break",
     {
       "type": "custom",
       "format": "┏━━━━                        ",
-      "outputColor": "magenta"
+      "outputColor": "38;2;119;0;204"
     },
     {
       "type": "title",
       "keyWidth": 10,
       "format": "┃       I use Arch BTW     ┃",
-      "outputColor": "magenta"
+      "outputColor": "38;2;119;0;204"
     },
     {
       "type": "custom",
       "format": "                        ━━━━┛",
-      "outputColor": "magenta"
+      "outputColor": "38;2;119;0;204"
     },
     {
       "type": "os",
       "key": "╭─ ",
-      "keyColor": "magenta"
+      "keyColor": "38;2;119;0;204"
     },
     {
       "type": "lm",
       "key": "├─󰧨 ",
-      "keyColor": "magenta"
+      "keyColor": "38;2;119;0;204"
     },
     {
       "type": "wm",
       "key": "├─ ",
-      "keyColor": "magenta"
+      "keyColor": "38;2;119;0;204"
     },
     {
       "type": "uptime",
       "key": "╰─󰅐 ",
-      "keyColor": "magenta"
+      "keyColor": "38;2;119;0;204"
     },
     "break",
     {
       "type": "terminal",
       "key": "╭─ ",
-      "keyColor": "cyan"
+      "keyColor": "38;2;153;119;217"
     },
     {
       "type": "shell",
       "key": "├─ ",
-      "keyColor": "cyan"
+      "keyColor": "38;2;153;119;217"
     },
     {
       "type": "editor",
       "key": "╰─󱞎 ",
-      "keyColor": "cyan"
+      "keyColor": "38;2;153;119;217"
     },
     "break",
     {
       "type": "cpu",
       "key": "╭─󰻠 ",
-      "keyColor": "green"
+      "keyColor": "38;2;188;180;255"
     },
     {
       "type": "gpu",
       "key": "├─󰍛 ",
-      "keyColor": "green"
+      "keyColor": "38;2;188;180;255"
     },
     {
       "type": "display",
       "compactType": "original-with-refresh-rate",
       "key": "╰─󰍹 ",
-      "keyColor": "green"
+      "keyColor": "38;2;188;180;255"
     }
   ]
 }
