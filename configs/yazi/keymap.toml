@@ -2,8 +2,7 @@
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
 prepend_keymap = [
-	{ on = [ "z", "c" ], run = "cd ~/.config", desc = "Go to ~/.config/" },
-	{ on = [ "z", "p" ], run = "cd ~/Projects", desc = "Go to ~/Projects/" },
+	{ on = [ "g", "p" ], run = "cd ~/Projects", desc = "Go to ~/Projects/" },
 ] 
 
 append_keymap = [
@@ -20,8 +19,8 @@ keymap = [
 	{ on = "k", run = "arrow -1", desc = "Move cursor up" },
 	{ on = "j", run = "arrow 1",  desc = "Move cursor down" },
 
-	{ on = "<Up>",    run = "arrow -1", desc = "Move cursor up" },
-	{ on = "<Down>",  run = "arrow 1",  desc = "Move cursor down" },
+	{ on = "<Up>",   run = "arrow -1", desc = "Move cursor up" },
+	{ on = "<Down>", run = "arrow 1",  desc = "Move cursor down" },
 
 	{ on = "<C-u>", run = "arrow -50%",  desc = "Move cursor up half page" },
 	{ on = "<C-d>", run = "arrow 50%",   desc = "Move cursor down half page" },
