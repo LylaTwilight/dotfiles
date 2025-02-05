@@ -9,23 +9,16 @@ fi
 # The path of the wallpapers directory
 wallpaper_dir="$HOME/.wallpapers"
 
-# check if the webp images directory
-# webp images aren't supported as an icon in rofi
-if [[ ! -d "$wallpaper_dir/webp_images" ]]; then
-	mkdir -p "$wallpaper_dir/webp_images"
-fi
-
-# finds images with webp type
-webps=$(find "$wallpaper_dir" -path $wallpaper_dir/webp_images -prune -o -type f -exec file --mime-type {} + | grep "image/webp" | cut -d: -f1)
+# finds images with webp type (because sometimes i find images with the extension .jpg for example but it's in fact a webp image)
+webps=$(find "$wallpaper_dir" -type f -exec file --mime-type {} + | grep "image/webp" | cut -d: -f1)
 
 # convert webp images to png
 # and moves them to webp_images directory
 if [[ -n "$webps" ]]; then
 	while read webp; do
 		png="${webp%.*}.png"
-		echo "Converting $webp to $png"
 		magick "$webp" "$png"
-		mv "$webp" "$wallpaper_dir/webp_images"
+		rm "$webp"
 	done <<< "$webps"
 fi
 
@@ -33,7 +26,7 @@ fi
 regex=".*\.\(jpg\|png\|jpeg\)"
 
 # finds all images in the wallpaper directory and it's subdirectories excluding webp_images which contain the webp images so it doesn't convert them to png every time the script is launched
-filenames=$(find "$wallpaper_dir" -path $wallpaper_dir/webp_images -prune -o -type f -regex $regex -printf "%P\n")
+filenames=$(find "$wallpaper_dir" -type f -regex $regex -printf "%P\n")
 
 # make rofi display the icons for the wallpapers
 entries=""
@@ -51,7 +44,4 @@ if [[ -n "$picked" ]]; then
 	swww img "$wallpaper_dir/$picked" --transition-fps 200 --transition-type random --transition-duration 2 
 
 	hyprctl notify 5 2000 "rgb(84DE8E)" "fontsize:24 ✨ Wallpaper changed to $picked"
-
-else
-	hyprctl notify -1 1500 "rgb(729FCF)" "fontsize:24" "😔 No wallpapers?"
 fi

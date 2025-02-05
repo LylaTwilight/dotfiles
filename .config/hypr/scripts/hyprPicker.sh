@@ -1,18 +1,12 @@
 #!/bin/bash
 
-# Check if hyprpicker is installed
-if ! command -v hyprpicker &> /dev/null; then
-	hyprctl notify 3 3000 "rgb(FF3333)" "fontsize:24" " Hyprpicker isn't installed"
-    exit 1
-fi
-
-# Stops hyprpicker from running more than one instance
+# Check if rofi is already running
 if pgrep -x "hyprpicker" &> /dev/null; then
-	hyprctl notify 4 2000 "rgb(FFFF64)" "fontsize:24" " Don't launch hyprpicker multiple times"
+    hyprctl notify 3 2000 "rgb(C62E2E)" "fontsize:24" " Rofi is already running"
 	exit 1
 fi
 
-# Run hyprpicker and capture the output
+# Run hyprpicker
 color=$(hyprpicker --autocopy)
 
 # Check if a color was selected
