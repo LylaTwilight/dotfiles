@@ -44,4 +44,6 @@ if [[ -n "$picked" ]]; then
 	swww img "$wallpaper_dir/$picked" --transition-fps 200 --transition-type random --transition-duration 2 
 
 	hyprctl notify 5 2000 "rgb(84DE8E)" "fontsize:24 ✨ Wallpaper changed to $picked"
+
+    source $HOME/.config/hypr/scripts/changeHyprlockBG.sh
 fi
