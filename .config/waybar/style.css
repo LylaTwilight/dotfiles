@@ -99,7 +99,8 @@ window#waybar {
     border-left: 2px solid #AA83F0;
 }
 
-#cpu, #memory {
+#backlight,
+#idle_inhibitor {
     padding: 0 10px;
 }
 
@@ -110,7 +111,8 @@ window#waybar {
 
 #battery,
 #wireplumber,
-#network {
+#network,
+#bluetooth {
     padding: 0 10px;
 }
 

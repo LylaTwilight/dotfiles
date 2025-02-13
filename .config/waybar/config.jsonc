@@ -12,13 +12,13 @@
     ],
     "modules-right": [
         "tray",
+        "bluetooth",
         "network",
         "wireplumber",
         "battery",
         "custom/notification",
-        "group/group-hardware"        
+        "group/group-hardware"
     ],
-
     // Left Modules
     "group/group-power": {
         "orientation": "inherit",
@@ -36,7 +36,7 @@
         ]
     },
     "image#imgPower": {
-        "exec":"~/.config/waybar/image02.sh",
+        "exec": "$HOME/.config/waybar/scripts/image02.sh",
         "size": 40
     },
     "custom/power": {
@@ -51,16 +51,16 @@
         "format": "󰍁",
         "on-click": "hyprlock"
     },
-    "hyprland/workspaces": {
-        
-    },
+    "hyprland/workspaces": {},
     "hyprland/language": {
         "format": "{}",
         "format-en": "English",
         "format-ar": "Arabic",
-        "keyboard-name": "at-translated-set-2-keyboard"
-    },
+        "keyboard-name": "at-translated-set-2-keyboard",
+        "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next",
+        "on-click-right": "hyprctl switchxkblayout at-translated-set-2-keyboard prev"
 
+    },
     // Center Modules
     "clock": {
         "interval": 1,
@@ -78,11 +78,10 @@
             }
         }
     },
-    
     // Right Modules
     "wireplumber": {
-        "on-click": "amixer sset Master toggle 1>/dev/null",
-        "on-click-right": "pavucontrol",
+        "on-click": "pavucontrol",
+        "on-click-right": "amixer sset Master toggle 1>/dev/null",
         "format": "{icon}{volume}%",
         "format-muted": " Muted",
         "format-icons": {
@@ -92,7 +91,6 @@
             ]
         }
     },
-
     "battery": {
         "bat": "BAT0",
         "adapter": "ADP1",
@@ -111,7 +109,6 @@
             "󰁹"
         ]
     },
-
     "group/group-hardware": {
         "orientation": "inherit",
         "drawer": {
@@ -122,60 +119,73 @@
         },
         "modules": [
             "image#imgHardware",
-            "cpu",
-            "memory"
+            "backlight",
+            "idle_inhibitor"
         ]
     },
+    "idle_inhibitor": {
+    "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "󰃠 {percent}%",
+        "on-scroll-up": "brightnessctl set 1%+",
+        "on-scroll-down": "brightnessctl set 1%-",
+        "on-click": "brightnessctl set 100%",
+        "on-click-right": "brightnessctl set 1%",
+        "on-click-middle": "brightnessctl set 50%"
+    },
     "image#imgHardware": {
-        "exec":"~/.config/waybar/image01.sh",
-        "interval": 0,
+        "exec": "$HOME/.config/waybar/scripts/image01.sh",
         "size": 40
     },
-
-    "cpu": {
-        "interval": 1,
-        "format": " {}%"
-    },
-
-    "memory": {
-        "interval": 30,
-        "format": "{used:0.1f}GB/{total:0.1f}GB"
-    },
-
     "network": {
-        "format": "{ifname}",
-        "format-wifi": "󰖩 {signalStrength}%",
-        "format-ethernet": "󰈀 Connected",
-        "format-disconnected": "Disconnected",
-        "tooltip-format": "󰈀 {ifname} via {gwaddr}",
-        "tooltip-format-wifi": "{essid}",
+        "format": "  {signalStrength}%",
+        "format-ethernet": " Connected",
+        "format-disconnected": "  Disconnected",
+        "tooltip-format": "{essid}",
         "tooltip-format-ethernet": "{ifname}",
-        "tooltip-format-disconnected": "No internet, Cry about it (:"
+        "tooltip-format-disconnected": "No internet, Cry about it (:",
+        "on-click": "kitty nmtui",
+        "on-click-right": "bash ~/.config/waybar/scripts/toggleWifi.sh"
     },
     "tray": {
         "icon-size": 13,
         "spacing": 10
     },
-
     "custom/notification": {
-        "tooltip": false,
         "format": "{icon}",
         "format-icons": {
-          "notification": "󱅫",
-          "none": "󰂚",
-          "dnd-notification": "󰂛<span foreground='red'><sup></sup></span>",
-          "dnd-none": "󰂛",
-          "inhibited-notification": "󰂚<span foreground='red'><sup></sup></span>",
-          "inhibited-none": "󰂚",
-          "dnd-inhibited-notification": "󰂛<span foreground='red'><sup></sup></span>",
-          "dnd-inhibited-none": "󰂛"
+            "notification": "󱅫",
+            "none": "󰂚",
+            "dnd-notification": "󰂠",
+            "dnd-none": "󰂠",
+            "inhibited-notification": "󱅫",
+            "inhibited-none": "󰂚",
+            "dnd-inhibited-notification": "󰂠",
+            "dnd-inhibited-none": "󰂠"
         },
+        "tooltip-format": "Notifications",
         "return-type": "json",
         "exec-if": "which swaync-client",
         "exec": "swaync-client -swb",
         "on-click": "swaync-client -t -sw",
         "on-click-right": "swaync-client -d -sw",
         "escape": true
-      }
-
+    },
+    "bluetooth": {
+        "format": " {status}",
+        "format-connected": " {device_alias}",
+        "format-connected-battery": " {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "This Device :\n{controller_alias}\t{controller_address}\n\nConnected To :\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}%\t{device_address}",
+        "on-click": "blueman-manager",
+        "on-click-right": "rfkill toggle bluetooth"
+    }
 }
